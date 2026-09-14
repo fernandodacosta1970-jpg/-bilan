@@ -11,7 +11,8 @@ export async function POST() {
     );
   }
 
-  const stripe = new Stripe(secretKey);
+  const stripe = new Stripe(secretKey.trim());
+
 
   const origin = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
