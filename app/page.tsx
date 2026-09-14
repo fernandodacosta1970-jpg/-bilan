@@ -1,4 +1,4 @@
-import CheckoutButton from "./checkout-button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,7 +15,12 @@ export default function Home() {
           automatiquement.
         </p>
         <div className="mt-8 flex items-center gap-4">
-          <CheckoutButton />
+          <Link
+            href="/signup"
+            className="inline-flex items-center justify-center rounded-sm bg-accent px-6 py-3 font-sans text-sm font-semibold text-ink transition hover:brightness-95"
+          >
+            Essayer gratuitement
+          </Link>
           <span className="text-sm text-slate">39&nbsp;€/mois · 10 clients suivis</span>
         </div>
       </section>
@@ -68,7 +73,12 @@ export default function Home() {
           Premier bilan envoyé ce mois-ci. Aucune carte requise pour tester.
         </p>
         <div className="mt-6">
-          <CheckoutButton />
+          <Link
+            href="/signup"
+            className="inline-flex items-center justify-center rounded-sm bg-accent px-6 py-3 font-sans text-sm font-semibold text-ink transition hover:brightness-95"
+          >
+            Essayer gratuitement
+          </Link>
         </div>
       </section>
     </main>
