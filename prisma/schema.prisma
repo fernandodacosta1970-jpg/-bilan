@@ -13,6 +13,8 @@ model User {
   passwordHash String
   createdAt    DateTime @default(now())
   clients      Client[]
+  brandPrimary String   @default("#1B2A4A")
+  brandAccent  String   @default("#D9A62E")
 }
 
 model Client {
