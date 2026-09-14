@@ -48,7 +48,7 @@ export default async function ClientPage({
         Bilan de {currentMonth}/{currentYear}
       </p>
 
-      <div className="mt-8 rounded-sm border border-line bg-white p-6">
+            <div className="mt-8 rounded-sm border border-line bg-white p-6">
         <EntryForm
           clientId={client.id}
           month={currentMonth}
@@ -65,6 +65,17 @@ export default async function ClientPage({
           }
         />
       </div>
+
+      {existingEntry && (
+        <div className="mt-6">
+          <Link
+            href={`/dashboard/clients/${client.id}/report?month=${currentMonth}&year=${currentYear}`}
+            className="text-sm font-semibold text-ink underline"
+          >
+            Voir le rapport de ce mois →
+          </Link>
+        </div>
+      )}
     </main>
   );
 }
