@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
   }
 
-  const { name } = await request.json();
+  const { name, email } = await request.json();
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return NextResponse.json(
       { error: "Le nom du client est requis." },
@@ -17,7 +17,11 @@ export async function POST(request: Request) {
   }
 
   const client = await prisma.client.create({
-    data: { name: name.trim(), userId: user.id },
+    data: {
+      name: name.trim(),
+      email: email && typeof email === "string" ? email.trim() : null,
+      userId: user.id,
+    },
   });
 
   return NextResponse.json({ client });
