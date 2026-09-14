@@ -3,6 +3,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
 import EntryForm from "./entry-form";
+import SendButton from "./send-button";
 
 export default async function ClientPage({
   params,
@@ -48,7 +49,7 @@ export default async function ClientPage({
         Bilan de {currentMonth}/{currentYear}
       </p>
 
-            <div className="mt-8 rounded-sm border border-line bg-white p-6">
+      <div className="mt-8 rounded-sm border border-line bg-white p-6">
         <EntryForm
           clientId={client.id}
           month={currentMonth}
@@ -67,13 +68,34 @@ export default async function ClientPage({
       </div>
 
       {existingEntry && (
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col gap-4">
           <Link
             href={`/dashboard/clients/${client.id}/report?month=${currentMonth}&year=${currentYear}`}
             className="text-sm font-semibold text-ink underline"
           >
             Voir le rapport de ce mois →
           </Link>
+
+          <div className="rounded-sm border border-line bg-white p-6">
+            <h2 className="font-serif text-lg font-medium text-ink">
+              Envoi du bilan
+            </h2>
+            <p className="mt-1 text-sm text-slate">
+              {existingEntry.sentAt
+                ? `Envoyé le ${existingEntry.sentAt.toLocaleDateString("fr-FR")}`
+                : "Pas encore envoyé."}
+              {existingEntry.readAt &&
+                ` · Lu le ${existingEntry.readAt.toLocaleDateString("fr-FR")}`}
+            </p>
+            <div className="mt-4">
+              <SendButton
+                clientId={client.id}
+                month={currentMonth}
+                year={currentYear}
+                hasEmail={!!client.email}
+              />
+            </div>
+          </div>
         </div>
       )}
     </main>
