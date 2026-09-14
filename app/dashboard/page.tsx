@@ -3,6 +3,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
 import AddClientForm from "./add-client-form";
+import BrandingForm from "./branding-form";
 import LogoutButton from "./logout-button";
 
 export default async function Dashboard() {
@@ -54,6 +55,17 @@ export default async function Dashboard() {
           </div>
         </>
       )}
+          <div className="mt-16 border-t border-line pt-8">
+        <h2 className="font-serif text-lg font-medium text-ink">
+          Couleurs de vos rapports
+        </h2>
+        <div className="mt-4">
+          <BrandingForm
+            initialPrimary={user.brandPrimary}
+            initialAccent={user.brandAccent}
+          />
+        </div>
+      </div>
     </main>
   );
 }
