@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/auth";
 import AddClientForm from "./add-client-form";
 import BrandingForm from "./branding-form";
 import LogoutButton from "./logout-button";
+import Link from "next/link";
+
 
 export default async function Dashboard() {
   const user = await getCurrentUser();
@@ -19,12 +21,18 @@ export default async function Dashboard() {
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
-      <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
         <h1 className="font-serif text-2xl font-medium text-ink">
           Vos clients suivis
         </h1>
-        <LogoutButton />
+        <div className="flex items-center gap-4">
+          <Link href="/dashboard/settings" className="text-sm text-slate underline">
+            Réglages
+          </Link>
+          <LogoutButton />
+        </div>
       </div>
+
 
       {clients.length === 0 ? (
         <div className="mt-10 rounded-sm border border-line bg-white p-6">
