@@ -22,21 +22,24 @@ model Client {
   userId    String
   user      User           @relation(fields: [userId], references: [id])
   name      String
+  email     String?
   createdAt DateTime       @default(now())
   entries   MonthlyEntry[]
 }
 
 model MonthlyEntry {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   clientId  String
-  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
   month     Int
   year      Int
   leads     Int?
   revenue   Float?
   hours     Float?
   highlight String?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
+  sentAt    DateTime?
+  readAt    DateTime?
 
   @@unique([clientId, month, year])
 }
