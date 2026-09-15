@@ -38,7 +38,8 @@ export async function sendReportEmail({
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Bilan <onboarding@resend.dev>",
+            from: "Bilan <bilan@bilan.website>",
+
       to,
       subject: `Votre bilan de ${MONTHS[month - 1]} ${year}`,
       html,
