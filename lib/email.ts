@@ -38,12 +38,13 @@ export async function sendReportEmail({
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-            from: "Bilan <bilan@bilan.website>",
-
+      from: "Bilan <bilan@bilan.website>",
       to,
+      reply_to: "bilanwebsite@gmail.com",
       subject: `Votre bilan de ${MONTHS[month - 1]} ${year}`,
       html,
     }),
+,
   });
 
   if (!res.ok) {
